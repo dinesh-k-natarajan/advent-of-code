@@ -4,18 +4,14 @@ def count_valid( inputs, part2=False):
     num_valid = 0
     for number in range( inputs[0], inputs[1]+1 ):
         digits = [ int( char ) for char in str( number ) ]
-        counts = [ 0 ]*len( digits )
-        for idx, entry in enumerate( digits ):
-            counts[idx]  = digits.count( entry ) - 1
+        counts = [ digits.count(entry)-1 for entry in digits ]
         running_product = set( [ counts[i]*counts[i+1] for i in range( len(counts)-1 ) ] )
         if not part2:
-            flag_adjacent = max( running_product ) > 0
+            flag_adjacent = any( running_product ) > 0
         else:
             flag_adjacent = 1 in running_product
-        ascending_digits = digits.copy()
-        ascending_digits.sort()
-        flag_decreasing  = ( digits == ascending_digits )
-        num_valid += int( flag_adjacent and flag_decreasing )
+        flag_decreasing  = any([ digits[i]>digits[i+1] for i in range(len(digits)-1) ])
+        num_valid += int( flag_adjacent and not flag_decreasing )
     return num_valid
 
 @pytest.mark.parametrize( 'test_input, expected', 

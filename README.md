@@ -11,8 +11,6 @@ Indulge yourselves at [adventofcode.com](https://adventofcode.com/about) created
 ### Directory and File Structure
 ```bash
 advent-of-code/
-├── LICENSE
-├── README.md
 ├── 2019
 │   ├── 1.in
 │   ├── 1.py
@@ -25,5 +23,7 @@ advent-of-code/
 │   └── README.md
 │ 
 ├── 2020
-    └── README.md
+│    └── README.md
+├── LICENSE
+└── README.md
 ```

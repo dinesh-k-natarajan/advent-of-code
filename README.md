@@ -6,7 +6,7 @@ Indulge yourselves at [adventofcode.com](https://adventofcode.com/about) created
 
 ### Programming Language 
  * 2019 - Python
- * 2020 - 
+ * 2020 - Python
 
 ### Directory and File Structure
 ```bash

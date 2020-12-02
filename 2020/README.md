@@ -9,3 +9,9 @@ $ python 1.py
 Part 1 Solution =  776064
 Part 2 Solution =  6964490 
 ```
+2. [Password Philosophy](https://adventofcode.com/2020/day/2)
+```bash
+$ python 2.py
+Part 1 Solution =  456
+Part 2 Solution =  308 
+```

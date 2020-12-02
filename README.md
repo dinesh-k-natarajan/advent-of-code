@@ -23,7 +23,13 @@ advent-of-code/
 │   └── README.md
 │ 
 ├── 2020
-│    └── README.md
-├── LICENSE
+│   ├── 1.in
+│   ├── 1.py
+│   ├── 2.in
+│   ├── 2.py
+│   ├── ...
+│   ├── ...
+│   └── README.md
+│── LICENSE
 └── README.md
 ```

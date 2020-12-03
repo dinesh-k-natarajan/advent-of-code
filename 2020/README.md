@@ -15,3 +15,9 @@ $ python 2.py
 Part 1 Solution =  456
 Part 2 Solution =  308 
 ```
+3. [Toboggan Trajectory](https://adventofcode.com/2020/day/3)
+```bash
+$ python 3.py
+Part 1 Solution =  162
+Part 2 Solution =  3064612320 
+```

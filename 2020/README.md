@@ -27,3 +27,10 @@ $ python 4.py
 Part 1 Solution =  196
 Part 2 Solution =  114
 ```
+5. [Binary Boarding](https://adventofcode.com/2020/day/5)
+```bash
+$ python 5.py
+Test 1 Solution =  357
+Part 1 Solution =  965
+Part 2 Solution =  524
+```

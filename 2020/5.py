@@ -21,7 +21,6 @@ def locate_seat( boarding_pass ):
         else:
             assert low == high
             return low
-
     row = get_partition( 0, 127, boarding_pass[:-3], ['F','B'] )
     col = get_partition( 0, 7,   boarding_pass[-3:], ['L','R'] )
     return row * 8 + col
@@ -38,8 +37,7 @@ def find_seat( boarding_passes ):
     free_seats  = all_seats - set(taken_seats)
     for seat in free_seats:
         if seat-1 not in free_seats and seat+1 not in free_seats:
-            my_seat = seat
-    return my_seat
+            return seat
 
 @pytest.mark.parametrize('example, expected', [ (['FBFBBFFRLR'], 357) ] )
 def test( example, expected ):

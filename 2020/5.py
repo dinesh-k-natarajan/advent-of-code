@@ -1,3 +1,5 @@
+import pytest 
+
 def get_input( filename ):
     with open(filename,'r') as input_file:
         inputs = input_file.read().splitlines()
@@ -39,9 +41,12 @@ def find_seat( boarding_passes ):
             my_seat = seat
     return my_seat
 
+@pytest.mark.parametrize('example, expected', [ (['FBFBBFFRLR'], 357) ] )
+def test( example, expected ):
+    assert max( decode_seats( example ) ) == expected
+
 def main():
     boarding_passes = get_input( '5.in' )
-    print('Test 1 Solution = ', max( decode_seats( ['FBFBBFFRLR']  ) ) )
     print('Part 1 Solution = ', max( decode_seats( boarding_passes ) ) )
     print('Part 2 Solution = ', find_seat( boarding_passes ) )
 

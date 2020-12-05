@@ -68,12 +68,12 @@ def count_valid( data, part2=False ):
                 count += 1          
     return count
 
-@pytest.mark.parametrize('test_input,expected',[ ('4_test1.in', 2) ] )
+@pytest.mark.parametrize('test_input,expected',[ ('4.example1', 2) ] )
 def test_part1( test_input, expected ):
     test_data = process_input( test_input )
     assert count_valid( test_data ) == expected
 
-@pytest.mark.parametrize('test_input,expected',[ ('4_test2.in', 4) ] )
+@pytest.mark.parametrize('test_input,expected',[ ('4.example2', 4) ] )
 def test_part2( test_input, expected ):
     test_data = process_input( test_input )
     assert count_valid( test_data, part2=True ) == expected

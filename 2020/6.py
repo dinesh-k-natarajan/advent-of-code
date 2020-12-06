@@ -12,9 +12,9 @@ def count_yes( answers, part2=False ):
     count_any = 0
     count_all = 0
     for group in answers:
-        yes_any = set( [result for item in group for result in item] )
+        yes_any    = set( [result for item in group for result in item] )
         count_any += len(yes_any)
-        yes_all = set(group[0]).intersection( *group[1:] ) 
+        yes_all    = set(group[0]).intersection( *group[1:] ) 
         count_all += len(yes_all)
     if not part2:
         return count_any

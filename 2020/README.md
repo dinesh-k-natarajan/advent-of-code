@@ -45,3 +45,9 @@ $ python 7.py
 Part 1 Solution =  213
 Part 2 Solution =  38426
 ```
+8. [Handheld Halting](https://adventofcode.com/2020/day/8)
+```bash
+$ python 8.py
+Part 1 Solution =  2025
+Part 2 Solution =  2001
+```

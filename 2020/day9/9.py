@@ -41,6 +41,7 @@ def find_limits( data, preamble ):
             if sum( range_ ) == invalid:
                 limits = range_
                 found_range = True
+                break
         len_range += 1
     return min( limits ) + max( limits ) 
 
@@ -49,7 +50,7 @@ def test_part1( test_input, expected ):
     assert find_invalid( get_inputs(test_input), preamble=5 ) == expected
 
 @pytest.mark.parametrize( 'test_input, expected', [ ('9.example', 62) ] )
-def test_part1( test_input, expected ):
+def test_part2( test_input, expected ):
     assert find_limits( get_inputs(test_input), preamble=5 ) == expected
 
 def main():

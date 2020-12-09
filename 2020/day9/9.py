@@ -31,8 +31,7 @@ def find_limits( data, preamble ):
     the invalid number. This function returns the sum( min, max )
     """
     invalid     = find_invalid( data, preamble )
-    invalid_loc = data.index( invalid )
-    subset      = data[ :invalid_loc ]
+    subset      = data[ :data.index( invalid ) ]
     len_range   = 2
     found_range = False
     while not found_range:
@@ -41,7 +40,6 @@ def find_limits( data, preamble ):
             if sum( range_ ) == invalid:
                 limits = range_
                 found_range = True
-                break
         len_range += 1
     return min( limits ) + max( limits ) 
 

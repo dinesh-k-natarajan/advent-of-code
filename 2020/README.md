@@ -57,3 +57,9 @@ $ python 9.py
 Part 1 Solution =  375054920
 Part 2 Solution =  54142584
 ```
+10. [Adapter Array](https://adventofcode.com/2020/day/10)
+```bash
+$ python 10.py
+Part 1 Solution =  1836
+Part 2 Solution =  43406276662336
+```

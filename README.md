@@ -13,10 +13,10 @@ Indulge yourselves at [adventofcode.com](https://adventofcode.com/about) created
 advent-of-code/
 ├── 2019
 │   ├── README.md
-│   ├── day1
+│   ├── 01
 │   │   ├── 1.in
 │   │   └── 1.py
-│   ├── day2
+│   ├── 02
 │   │   ├── 2.in
 │   │   └── 2.py
 │   ├── ...
@@ -24,17 +24,17 @@ advent-of-code/
 │   └── README.md
 │
 ├── 2020 
-│   ├── day1
+│   ├── 01
 │   │   ├── 1.in
 │   │   └── 1.py
-│   ├── day2
+│   ├── 02
 │   │   ├── 2.in
 │   │   └── 2.py
-│   ├── day3
+│   ├── 03
 │   │   ├── 3.example
 │   │   ├── 3.in
 │   │   └── 3.py
-│   ├── day4
+│   ├── 04
 │   │   ├── 4.example1
 │   │   ├── 4.example2
 │   │   ├── 4.in

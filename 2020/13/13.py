@@ -60,7 +60,8 @@ def get_timestamp( notes ):
     
         ** Solution partly inspired by reddit user: passwordsniffer ** 
     
-    NOTE: This problem could also be solved using the Chinese Remainder Theorem (TODO)
+    NOTE: This approach ONLY works when all the bus IDs are prime numbers. For the general
+    case, the Chinese Remainder Theorem could be used (TODO)
 
     Task: 
     This function returns the earliest timestamp that satisfies the contest rules

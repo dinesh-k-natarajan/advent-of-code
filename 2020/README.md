@@ -75,3 +75,9 @@ $ python 13.py
 Part 1 Solution =  410
 Part 2 Solution =  600691418730595
 ```
+15. [Rambunctious Recitation](https://adventofcode.com/2020/day/15)
+```bash
+$ python 15.py
+Part 1 Solution =  234
+Part 2 Solution =  8984
+```

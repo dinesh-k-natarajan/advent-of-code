@@ -63,6 +63,11 @@ $ python 10.py
 Part 1 Solution =  1836
 Part 2 Solution =  43406276662336
 ```
+11. [Seating System](https://adventofcode.com/2020/day/11)
+```bash
+$ python 11.py
+Part 1 Solution =  2108
+```
 12. [Rain Risk](https://adventofcode.com/2020/day/12)
 ```bash
 $ python 12.py

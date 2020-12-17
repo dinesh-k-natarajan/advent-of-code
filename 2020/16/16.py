@@ -60,9 +60,9 @@ def decode_fields( rules, my_ticket, nearby_tickets ):
     Match the entries in valid tickets to the fields based on the field rules
     Create a dict with fields as keys with values as a list with all possible columns
     """
-    possible_columns = deepcopy( rules )
-    for key in possible_columns: 
-        possible_columns[key] = list( range( len(my_ticket) ) )
+    possible_columns = defaultdict( list )
+    for field in rules: 
+        possible_columns[field] = list( range( len(my_ticket) ) )
     """
     Step 3:
     For each column, iterate through each rule and check if the entries satisfy the rule
@@ -78,7 +78,7 @@ def decode_fields( rules, my_ticket, nearby_tickets ):
     Step 4:
     Given the admissible columns for each field, if only one column is admissible it is
     assigned as the unique column for that field and removed from the list of admissible
-    columns list of the other keys. Repeating this to all fields, finally results in
+    columns list of the other fields. Repeating this to all fields, finally results in
     the correct assignment of fields and columns in the dict `fields_order`
     """
     fields_order = defaultdict( list )
@@ -92,7 +92,7 @@ def decode_fields( rules, my_ticket, nearby_tickets ):
                                                  if column != unique_column ] 
     """
     Step 5:
-    Find the product of the values corresponding to the fields starting with departure
+    Find the product of the values corresponding to the fields starting with 'departure'
     """
     product = 1
     for field in fields_order.keys():

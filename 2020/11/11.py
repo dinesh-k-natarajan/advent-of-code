@@ -36,10 +36,13 @@ def adjust_layout( seats, part2=False ):
     This function returns the seats after one round of layout changes
     
     Changes in rules for Part 2:
-        1. The adjacent seats have to a seat (L or #) and not a floor. 
-        2. The tolerance for adjacent occupied seats has increased from 4 to 5. 
+        1.  The adjacent seats have to a seat (L or #) and not a floor. 
+            Continue in a direction, until a seat is found. 
+        2.  The tolerance for adjacent occupied seats has increased from 4 to 5. 
+    TODO: Implement Part 2 in the style of Part 1
     """
     new_layout = deepcopy( seats )
+    assert new_layout is not seats
     adj_rows = [-1,0,1] 
     adj_cols = [-1,0,1]
     tolerance = 4 if not part2 else 5
@@ -47,7 +50,7 @@ def adjust_layout( seats, part2=False ):
         for n_col, seat in enumerate( row ):
             if not part2:
                 adj_seats = [ [seat for seat in seats[n_row+r][n_col+c]] for (r,c) in product(adj_rows,adj_cols) 
-                            if 0<=n_row+r<len(seats) and 0<=n_col+c<len(seats[0]) and (n_row+r,n_col+c) != (n_row,n_col) ]
+                            if 0<=n_row+r<len(seats) and 0<=n_col+c<len(seats[0]) and (r,c) != (0,0) ]
                 adj_seats = [ seat for redundant_list in adj_seats for seat in redundant_list ]
             elif part2:
                 adj_seats = []
@@ -76,6 +79,7 @@ def count_occupied( seats, part2=False ):
     layout.
     """
     old_layout = deepcopy( seats )
+    assert old_layout is not seats
     converged = False
     while not converged:
         new_layout = adjust_layout( old_layout, part2 )

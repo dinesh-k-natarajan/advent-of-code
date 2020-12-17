@@ -45,9 +45,22 @@ def adjust_layout( seats, part2=False ):
     tolerance = 4 if not part2 else 5
     for n_row, row in enumerate( new_layout ):
         for n_col, seat in enumerate( row ):
-            adj_seats = [ [seat for seat in seats[n_row+r][n_col+c]] for (r,c) in product(adj_rows,adj_cols) 
+            if not part2:
+                adj_seats = [ [seat for seat in seats[n_row+r][n_col+c]] for (r,c) in product(adj_rows,adj_cols) 
                             if 0<=n_row+r<len(seats) and 0<=n_col+c<len(seats[0]) and (n_row+r,n_col+c) != (n_row,n_col) ]
-            adj_seats = [ seat for redundant_list in adj_seats for seat in redundant_list ]
+                adj_seats = [ seat for redundant_list in adj_seats for seat in redundant_list ]
+            elif part2:
+                adj_seats = []
+                for r in adj_rows:
+                    for c in adj_cols:
+                        if (r,c) == (0,0): continue
+                        radius = 1
+                        while 0 <= n_row + radius*r < len(seats) and 0 <= n_col + radius*c < len(seats[0]):
+                            adj = seats[n_row+radius*r][n_col+radius*c]
+                            if adj != '.':
+                                adj_seats.append( adj )
+                                break
+                            radius += 1
             n_occupied = adj_seats.count('#')
             if seats[n_row][n_col] == 'L' and n_occupied == 0:
                 new_layout[n_row][n_col] = '#'
@@ -76,11 +89,13 @@ def count_occupied( seats, part2=False ):
 def test_part1( test_input, expected ):
     assert count_occupied( get_inputs(test_input) ) == expected
 
+@pytest.mark.parametrize( 'test_input, expected', [ ('11.example', 26) ] )
+def test_part2( test_input, expected ):
+    assert count_occupied( get_inputs(test_input), part2=True ) == expected
+
 def main():
-    #print('Test 1 Solution = ', count_occupied( get_inputs('11.example') ) )
     print('Part 1 Solution = ', count_occupied( get_inputs('11.in') ) )
-    #print('Test 2 Solution = ', count_occupied( get_inputs('11.example'), part2=True) )
-    #print('Part 2 Solution = ', count_occupied( get_inputs('11.in'), part2=True) )
+    print('Part 2 Solution = ', count_occupied( get_inputs('11.in'), part2=True) )
 
 if __name__ == '__main__':
     exit( main())

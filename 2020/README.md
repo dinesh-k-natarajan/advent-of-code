@@ -81,6 +81,12 @@ $ python 13.py
 Part 1 Solution =  410
 Part 2 Solution =  600691418730595
 ```
+14. [Docking Data](https://adventofcode.com/2020/day/14)
+```bash
+$ python 14.py
+Part 1 Solution =  9615006043476
+Part 2 Solution =  4275496544925
+```
 15. [Rambunctious Recitation](https://adventofcode.com/2020/day/15)
 ```bash
 $ python 15.py
@@ -98,4 +104,10 @@ Part 2 Solution =  6766503490793
 $ python 17.py
 Part 1 Solution =  315
 Part 2 Solution =  1520
+```
+18. [Operator Order](https://adventofcode.com/2020/day/18)
+```bash
+$ python 18.py
+Part 1 Solution =  4940631886147
+Part 2 Solution =  283582817678281
 ```

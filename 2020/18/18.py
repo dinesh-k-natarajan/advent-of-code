@@ -12,8 +12,6 @@ class NumType1:
     A class of numbers that has '-' replaced by '*' such that
     '+' and '-' have equal precedence. 
     i.e., '+' -> '+', '*' -> '-'
-    
-    *** Solution partly inspired by user: geohot (George Hotz) ***
     """
     def __init__( self, value ):
         self.value = value
@@ -72,6 +70,8 @@ def changed_precedence( expressions, part2=False ):
     using eval().
 
     This function returns the sum of results of each expression.
+    
+    *** Solution partly inspired by user: geohot (George Hotz) ***
     
     For Part 2:
         - '+' has higher precedence than '*'

@@ -12,6 +12,8 @@ class NumType1:
     A class of numbers that has '-' replaced by '*' such that
     '+' and '-' have equal precedence. 
     i.e., '+' -> '+', '*' -> '-'
+    
+    *** Solution partly inspired by user: geohot (George Hotz) ***
     """
     def __init__( self, value ):
         self.value = value
@@ -42,22 +44,15 @@ def modify_string( string, part2=False ):
     The string representing the expression is modified such that
     the numbers are replaced by the newly defined number classes 
     that determine the operator precedence.
-    *** Solution partly inspired by user: geohot (George Hotz) ***
     """
     modified_string = ''
     numbers_list = ['0','1','2','3','4','5','6','7','8','9']
     num_class = 'NumType1' if not part2 else 'NumType2'
-    prev_was_num = False
     for char in string:
-        if char in numbers_list and not prev_was_num:
-            modified_string += num_class + '('
-            prev_was_num = True
-        elif char not in numbers_list and prev_was_num:
-            modified_string += ')'
-            prev_was_num = False
-        modified_string += char
-    if prev_was_num:
-        modified_string += ')'
+        if char in numbers_list:
+            modified_string += num_class + '(' + char + ')'
+        else:
+            modified_string += char
     return modified_string
 
 def changed_precedence( expressions, part2=False ):

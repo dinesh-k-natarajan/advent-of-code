@@ -111,3 +111,9 @@ $ python 18.py
 Part 1 Solution =  4940631886147
 Part 2 Solution =  283582817678281
 ```
+21. [Allergen Assessment](https://adventofcode.com/2020/day/21)
+```bash
+$ python 21.py
+Part 1 Solution =  2635
+Part 2 Solution =  xncgqbcp,frkmp,qhqs,qnhjhn,dhsnxr,rzrktx,ntflq,lgnhmx
+```

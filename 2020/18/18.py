@@ -7,7 +7,7 @@ def get_inputs( filename ):
         inputs = input_file.read().splitlines()
     return inputs
 
-class NumType1:
+class NumType1( int ):
     """
     A class of numbers that has '-' replaced by '*' such that
     '+' and '-' have equal precedence. 
@@ -22,7 +22,7 @@ class NumType1:
     def __sub__( self, num2 ):
         return NumType1( self.value * num2.value )
 
-class NumType2:
+class NumType2( int ):
     """
     A class of numbers that has '+' and '*' operators reversed 
     via remapping via '-', such that '+' has higher precedence than '*'. 
@@ -85,7 +85,7 @@ def changed_precedence( expressions, part2=False ):
         modified_expression = modified_expression.replace( '*', '-' )
         if part2:
             modified_expression = modified_expression.replace( '+', '*' )
-        result += eval( modified_expression ).value 
+        result += eval( modified_expression )
     return result
 
 def main():

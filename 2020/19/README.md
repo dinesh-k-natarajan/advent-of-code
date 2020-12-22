@@ -1,6 +1,6 @@
-# My solution for Day 19
+# My Solution for Day 19
 
-19. [Monster Messages](https://adventofcode.com/2020/day/19)
+[Monster Messages](https://adventofcode.com/2020/day/19)
 ```bash
 $ python 19.py
 Part 1 Solution =  226

@@ -1,6 +1,6 @@
-# My solution for Day 16
+# My Solution for Day 16
 
-16. [Ticket Translation](https://adventofcode.com/2020/day/16)
+[Ticket Translation](https://adventofcode.com/2020/day/16)
 ```bash
 $ python 16.py
 Part 1 Solution =  24110

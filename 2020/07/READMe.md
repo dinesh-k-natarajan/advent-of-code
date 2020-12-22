@@ -1,6 +1,6 @@
-# My solution for Day 7
+# My Solution for Day 7
 
-7. [Handy Haversacks](https://adventofcode.com/2020/day/7)
+[Handy Haversacks](https://adventofcode.com/2020/day/7)
 ```bash
 $ python 7.py
 Part 1 Solution =  213

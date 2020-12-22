@@ -1,11 +1,27 @@
 import pytest 
 
 def get_input( filename ):
+    """
+    The input file contains boarding passes in each line.
+    This function returns a list of boarding passes.
+    """
     with open(filename,'r') as input_file:
         inputs = input_file.read().splitlines()
     return inputs
 
 def locate_seat( boarding_pass ):
+    """
+    The plane contains 128 rows and 8 columns. Each boarding pass
+    describes how to locate the corresponding seat by recursively
+    splitting the plane in half in either the 'Front', 'Back',
+    'Left', or 'Right' directions. 
+
+    e.g., A boarding pass looks like: 'FBFBBFFRLR', where the last
+    three characters describe the column, and the first part describes
+    the row of the seat.
+
+    This function returns the seat ID which is found by (row*8) + column
+    """
     def get_partition( low, high, b_pass, region ): 
         if b_pass != '':
             if b_pass[0] == region[0]:
@@ -26,12 +42,25 @@ def locate_seat( boarding_pass ):
     return row * 8 + col
 
 def decode_seats( boarding_passes ):
+    """
+    Given the encryted boarding passes, this function computes the 
+    seat IDs for each boarding pass
+    """
     seat_ids = []
     for boarding_pass in boarding_passes:
         seat_ids.append( locate_seat( boarding_pass ) )
     return seat_ids
 
 def find_seat( boarding_passes ):
+    """
+    For Part 2:
+    -----------
+    After finding all the taken seats given in the boarding passes, the goal
+    is to find the empty seat. It is to be noted that there are some invalid seats
+    in the front and back of this plane, so these seats should not be misidentified
+    as the empty seat. If the seat ID before and after the empty seat is occupied,
+    then that will be the empty seat of interest.
+    """
     taken_seats = decode_seats( boarding_passes )
     all_seats   = set( [ *range( max( taken_seats )+1 ) ] )
     free_seats  = all_seats - set(taken_seats)

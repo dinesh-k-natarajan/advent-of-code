@@ -2,10 +2,20 @@ import pytest
 import re
 
 def split_policies( policies ):
+    """
+    This function splits each line of policies using regular expressions
+    and the specific delimiters. 
+    """
     delimiters = '-| |: '
     return [ re.split(delimiters, item) for item in policies] 
 
 def count_valid( policies ):
+    """
+    This function counts the number of valid passwords based on the policies.
+
+    e.g.: In the policy, '1-3 a: abcde', if the password 'abcde' contains
+    'a' atleast '1' time(s) and atmost '3' times, then it is valid.
+    """
     policies = split_policies( policies )
     valid = 0
     for policy in policies:
@@ -16,6 +26,18 @@ def count_valid( policies ):
     return valid
 
 def recount_valid( policies ):
+    """
+    This function recounts the number of valid passwords based on the policies
+    and the new rule introduced in Part 2.
+    
+    Rule change: The numbers '1-3' represent the positions of the password 
+    of which exactly one (XOR logic) must contain the character 'a'
+
+    Test cases:
+        1-3 a: abcde is valid: position 1 contains a and position 3 does not.
+        1-3 b: cdefg is invalid: neither position 1 nor position 3 contains b.
+        2-9 c: ccccccccc is invalid: both position 2 and position 9 contain c.
+    """
     policies = split_policies( policies )
     valid = 0
     for policy in policies:
@@ -34,8 +56,8 @@ def test_part1( test_input, expected ):
     assert count_valid( test_input ) == expected
 
 @pytest.mark.parametrize('test_input,expected',[ (['1-3 a: abcde',
-                                                    '1-3 b: cdefg',
-                                                    '2-9 c: ccccccccc'
+                                                   '1-3 b: cdefg',
+                                                   '2-9 c: ccccccccc'
                                                    ], 1) ] )
 def test_part2( test_input, expected ):
     assert recount_valid( test_input ) == expected

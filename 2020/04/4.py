@@ -3,6 +3,12 @@ from collections import defaultdict
 import re
 
 def process_input( filename ):
+    """ 
+    The input file contains groups of lines describing each passport.
+    Each passport contains a field and corresponding value.
+    This function returns a list of all passports where each passport
+    is a dictionary of { field:value }
+    """
     with open(filename,'r') as input_file:
         raw_input = input_file.read().split('\n\n')
     list_of_dicts = []
@@ -17,6 +23,21 @@ def process_input( filename ):
     return list_of_dicts
 
 def count_valid( data, part2=False ):
+    """
+    For Part 1:
+    -----------
+    The valid passports are those that contain the following required fields:
+    byr, iyr, eyr, hgt, hcl, ecl, pid, cid. The field 'cid' is optional.
+    
+    For Part 2:
+    -----------
+    Along with the rules for the presence of required fields from Part 1, 
+    additional rules are now considered for the values of those fields. 
+    These rules are defined in the `valid_values` dictionary below.
+
+    This function returns the number of valid passports defined by the correponding
+    rules.
+    """
     required_fields = {'byr','iyr','eyr','hgt','hcl','ecl','pid','cid'}
     allowed_missing = {'cid'}
     valid_values    = { 'byr':[4, 1920, 2002], 

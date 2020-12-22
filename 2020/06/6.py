@@ -1,6 +1,15 @@
 import pytest
 
 def get_inputs( filename):
+    """
+    The input file contains the list of questions to which
+    each group of passengers answered yes on the customs form.
+
+    Each line in the group represents a single person.
+    
+    This function returns a list of lists where the entries
+    of the inner list represents each person.
+    """
     with open( filename, 'r') as input_file:
         groups = input_file.read().split('\n\n')
     inputs = []
@@ -9,6 +18,17 @@ def get_inputs( filename):
     return inputs
 
 def count_yes( answers, part2=False ):
+    """
+    For Part 1:
+    -----------
+    This function returns the count of questions to which atleast one
+    person in the group answered yes.
+    
+    For Part 2:
+    -----------
+    This function returns the count of questions to which every
+    person in the group answered yes.
+    """
     count_any = 0
     count_all = 0
     for group in answers:

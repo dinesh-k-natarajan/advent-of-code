@@ -1,6 +1,10 @@
 import pytest
 
 def product_of_2( numbers ):
+    """
+    From the given list of numbers, find the pair of numbers that sum up to 2020.
+    This function returns the prduct of those 2 numbers.
+    """
     numbers = [ int( item ) for item in numbers ]
     for i in range( len(numbers) ):
         for j in range( i+1, len(numbers) ):
@@ -8,6 +12,10 @@ def product_of_2( numbers ):
                 return numbers[i] * numbers[j] 
 
 def product_of_3( numbers ):
+    """
+    From the given list of numbers, find the group of 3 numbers that sum up to 2020. 
+    This function returns the product of those 3 numbers.
+    """
     numbers = [ int( item ) for item in numbers ]
     for i in range( len(numbers) ):
         for j in range( i+1, len(numbers) ):

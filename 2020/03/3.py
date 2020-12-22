@@ -1,10 +1,22 @@
 import pytest
 
 def get_input( file_name ):
+    """
+    The input file contains a map.
+    This function returns each line as an entry of a list.
+    """
     with open( file_name, 'r') as file:
         return file.read().splitlines()
 
 def count_trees( grid, delta_col=3, delta_row=1 ):
+    """
+    Starting from position (0,0) of the grid, the goal is to
+    count the trees by moving downwards with the slope described 
+    by the delta arguments. 
+
+    The grid is periodic in the horizontal direction (w.r.t columns) 
+    and the counting is stopped when the last row of the grid is reached.
+    """
     height = len(grid)
     width  = len(grid[0])
     count = 0
@@ -16,6 +28,13 @@ def count_trees( grid, delta_col=3, delta_row=1 ):
     return count
 
 def get_product( grid, slopes):
+    """
+    For Part 2:
+    -----------
+    For every direction described in slopes, the number of trees are counted
+    on the grid. This function returns the product of number of trees in each
+    of the slopes.
+    """
     product = 1
     for slope in slopes:
         product *= count_trees( grid, *slope)

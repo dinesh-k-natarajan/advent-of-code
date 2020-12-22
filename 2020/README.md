@@ -12,5 +12,5 @@ Language used: Python
  - [x] Explore Python for unseen use-cases
  - [x] Reduce usage of packages wherever possible
  - [x] Improve code readability
- - [ ] Form a daily habit
+ - [x] Form a daily habit
  - [x] Have fun!

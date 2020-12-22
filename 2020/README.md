@@ -111,6 +111,12 @@ $ python 18.py
 Part 1 Solution =  4940631886147
 Part 2 Solution =  283582817678281
 ```
+19. [Monster Messages](https://adventofcode.com/2020/day/19)
+```bash
+$ python 19.py
+Part 1 Solution =  226
+Part 2 Solution =  355
+```
 21. [Allergen Assessment](https://adventofcode.com/2020/day/21)
 ```bash
 $ python 21.py

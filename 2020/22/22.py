@@ -40,13 +40,14 @@ def recursive_combat( decks ):
     Plays recursive combat game based on the additional rules defined in
     Part 2.
     """
-    history1, history2 = [], []
+    history = set()
     rounds = 1
     while all( [ len(deck)!=0 for deck in decks ] ):
-        if decks[0] in history1 and decks[1] in history2:
+        current_decks = ( ','.join( str(card) for card in decks[0] ),
+                          ','.join( str(card) for card in decks[1] )  )
+        if current_decks in history:
             return [ decks[0], [] ]
-        history1.append( deepcopy(decks[0]) )
-        history2.append( deepcopy(decks[1]) )
+        history.add( current_decks ) 
         cards = [ deck.pop(0) for deck in decks ]
         flags = [ len(deck) >= card for (deck,card) in [(decks[0],cards[0]), (decks[1],cards[1]) ] ] 
         if flags[0] and flags[1]:

@@ -9,8 +9,8 @@ Language used: Python
  * README with the puzzle solutions
 
 ### My Personal Goals:
- * Explore Python for unseen use-cases
- * Reduce usage of packages wherever possible
- * Improve code readability
- * Form a daily habit
- * Have fun!
+ - [x] Explore Python for unseen use-cases
+ - [x] Reduce usage of packages wherever possible
+ - [x] Improve code readability
+ - [ ] Form a daily habit
+ - [x] Have fun!

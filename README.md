@@ -1,5 +1,10 @@
 # Advent of Code
 
+[![Scc Count Badge](https://sloc.xyz/github/dinesh-k-natarajan/advent-of-code/?category=code)](https://github.com/dinesh-k-natarajan/advent-of-code/)
+[![Scc Count Badge](https://sloc.xyz/github/dinesh-k-natarajan/advent-of-code/?category=blanks)](https://github.com/dinesh-k-natarajan/advent-of-code/)
+[![Scc Count Badge](https://sloc.xyz/github/dinesh-k-natarajan/advent-of-code/?category=comments)](https://github.com/dinesh-k-natarajan/advent-of-code/)
+[![Scc Count Badge](https://sloc.xyz/github/dinesh-k-natarajan/advent-of-code/?category=lines)](https://github.com/dinesh-k-natarajan/advent-of-code/)
+
 My solutions for the yearly coding challenge resembling an advent calendar
 
 Indulge yourselves at [adventofcode.com](https://adventofcode.com/about) created by [Eric Wastl](http://was.tl/)

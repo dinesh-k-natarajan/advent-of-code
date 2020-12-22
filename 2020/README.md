@@ -3,14 +3,14 @@
 Language used: Python
 
 Each daily folder contains:
-    * example inputs for test cases
-    * puzzle inputs
-    * python script used to solve the puzzle
-    * README with the puzzle solutions
+ * example inputs for test cases
+ * puzzle inputs
+ * python script used to solve the puzzle
+ * README with the puzzle solutions
 
 My Personal Goals:
-    * Explore Python for unseen use-cases
-    * Reduce usage of packages wherever possible
-    * Improve code readability
-    * Form a daily habit
-    * Have fun!
+ * Explore Python for unseen use-cases
+ * Reduce usage of packages wherever possible
+ * Improve code readability
+ * Form a daily habit
+ * Have fun!

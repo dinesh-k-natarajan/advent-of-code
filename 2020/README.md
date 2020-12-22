@@ -1,131 +1,16 @@
-# My solutions for the 2020 Advent
+# My solutions for the [2020 Advent of Code](https://adventofcode.com/2020)
 
-Language: Python
+Language used: Python
 
-## Answers for the challenges
-1. [Rocket Repair](https://adventofcode.com/2020/day/1)
-```bash
-$ python 1.py
-Part 1 Solution =  776064
-Part 2 Solution =  6964490 
-```
-2. [Password Philosophy](https://adventofcode.com/2020/day/2)
-```bash
-$ python 2.py
-Part 1 Solution =  456
-Part 2 Solution =  308 
-```
-3. [Toboggan Trajectory](https://adventofcode.com/2020/day/3)
-```bash
-$ python 3.py
-Part 1 Solution =  162
-Part 2 Solution =  3064612320 
-```
-4. [Passport Processing](https://adventofcode.com/2020/day/4)
-```bash
-$ python 4.py
-Part 1 Solution =  196
-Part 2 Solution =  114
-```
-5. [Binary Boarding](https://adventofcode.com/2020/day/5)
-```bash
-$ python 5.py
-Part 1 Solution =  965
-Part 2 Solution =  524
-```
-6. [Custom Customs](https://adventofcode.com/2020/day/6)
-```bash
-$ python 6.py
-Part 1 Solution =  6714
-Part 2 Solution =  3435
-```
-7. [Handy Haversacks](https://adventofcode.com/2020/day/7)
-```bash
-$ python 7.py
-Part 1 Solution =  213
-Part 2 Solution =  38426
-```
-8. [Handheld Halting](https://adventofcode.com/2020/day/8)
-```bash
-$ python 8.py
-Part 1 Solution =  2025
-Part 2 Solution =  2001
-```
-9. [Encoding Error](https://adventofcode.com/2020/day/9)
-```bash
-$ python 9.py
-Part 1 Solution =  375054920
-Part 2 Solution =  54142584
-```
-10. [Adapter Array](https://adventofcode.com/2020/day/10)
-```bash
-$ python 10.py
-Part 1 Solution =  1836
-Part 2 Solution =  43406276662336
-```
-11. [Seating System](https://adventofcode.com/2020/day/11)
-```bash
-$ python 11.py
-Part 1 Solution =  2108
-Part 2 Solution =  1897
-```
-12. [Rain Risk](https://adventofcode.com/2020/day/12)
-```bash
-$ python 12.py
-Part 1 Solution =  590
-Part 2 Solution =  42013
-```
-13. [Shuttle Search](https://adventofcode.com/2020/day/13)
-```bash
-$ python 13.py
-Part 1 Solution =  410
-Part 2 Solution =  600691418730595
-```
-14. [Docking Data](https://adventofcode.com/2020/day/14)
-```bash
-$ python 14.py
-Part 1 Solution =  9615006043476
-Part 2 Solution =  4275496544925
-```
-15. [Rambunctious Recitation](https://adventofcode.com/2020/day/15)
-```bash
-$ python 15.py
-Part 1 Solution =  234
-Part 2 Solution =  8984
-```
-16. [Ticket Translation](https://adventofcode.com/2020/day/16)
-```bash
-$ python 16.py
-Part 1 Solution =  24110
-Part 2 Solution =  6766503490793
-```
-17. [Conway Cubes](https://adventofcode.com/2020/day/17)
-```bash
-$ python 17.py
-Part 1 Solution =  315
-Part 2 Solution =  1520
-```
-18. [Operator Order](https://adventofcode.com/2020/day/18)
-```bash
-$ python 18.py
-Part 1 Solution =  4940631886147
-Part 2 Solution =  283582817678281
-```
-19. [Monster Messages](https://adventofcode.com/2020/day/19)
-```bash
-$ python 19.py
-Part 1 Solution =  226
-Part 2 Solution =  355
-```
-21. [Allergen Assessment](https://adventofcode.com/2020/day/21)
-```bash
-$ python 21.py
-Part 1 Solution =  2635
-Part 2 Solution =  xncgqbcp,frkmp,qhqs,qnhjhn,dhsnxr,rzrktx,ntflq,lgnhmx
-```
-22. [Crab Combat](https://adventofcode.com/2020/day/22)
-```bash
-$ python 22.py
-Part 1 Solution =  34127
-Part 2 Solution =  32054
-```
+Each daily folder contains:
+    * example inputs for test cases
+    * puzzle inputs
+    * python script used to solve the puzzle
+    * README with the puzzle solutions
+
+My Personal Goals:
+    * Explore Python for unseen use-cases
+    * Reduce usage of packages wherever possible
+    * Improve code readability
+    * Form a daily habit
+    * Have fun!

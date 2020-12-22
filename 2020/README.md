@@ -1,4 +1,4 @@
-# My solutions for the [2020 Advent of Code](https://adventofcode.com/2020)
+# My Solutions for the [2020 Advent of Code](https://adventofcode.com/2020)
 
 Language used: Python
 

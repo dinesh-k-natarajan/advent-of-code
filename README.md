@@ -1,9 +1,9 @@
 # Advent of Code
 
-[(https://img.shields.io/github/languages/count/dinesh-k-natarajan/advent-of-code)]
-[(https://img.shields.io/github/languages/top/dinesh-k-natarajan/advent-of-code?color=yellow)]
-[(https://img.shields.io/github/last-commit/dinesh-k-natarajan/advent-of-code?color=white)]
-[(https://sloc.xyz/github/dinesh-k-natarajan/advent-of-code/?category=comments)]
+[![](https://img.shields.io/github/languages/count/dinesh-k-natarajan/advent-of-code)]()
+[![](https://img.shields.io/github/languages/top/dinesh-k-natarajan/advent-of-code?color=yellow)]()
+[![](https://img.shields.io/github/last-commit/dinesh-k-natarajan/advent-of-code?color=white)]()
+[![](https://sloc.xyz/github/dinesh-k-natarajan/advent-of-code/?category=comments)]()
 
 My solutions for the yearly coding challenge resembling an advent calendar
 

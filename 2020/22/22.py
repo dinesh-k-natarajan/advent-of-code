@@ -50,7 +50,7 @@ def recursive_combat( decks ):
         history.add( current_decks ) 
         cards = [ deck.pop(0) for deck in decks ]
         flags = [ len(deck) >= card for (deck,card) in [(decks[0],cards[0]), (decks[1],cards[1]) ] ] 
-        if flags[0] and flags[1]:
+        if all( flags ):
             #print( 'sub-game starts' )
             sub_decks = [ decks[0][:cards[0]], decks[1][:cards[1]] ]
             sub_decks = recursive_combat( sub_decks )

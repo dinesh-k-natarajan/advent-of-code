@@ -117,3 +117,9 @@ $ python 21.py
 Part 1 Solution =  2635
 Part 2 Solution =  xncgqbcp,frkmp,qhqs,qnhjhn,dhsnxr,rzrktx,ntflq,lgnhmx
 ```
+22. [Crab Combat](https://adventofcode.com/2020/day/22)
+```bash
+$ python 22.py
+Part 1 Solution =  34127
+Part 2 Solution =  32054
+```

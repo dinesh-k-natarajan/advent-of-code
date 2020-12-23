@@ -1,9 +1,8 @@
 # Advent of Code
 
-[![](https://img.shields.io/github/languages/count/dinesh-k-natarajan/advent-of-code)](https://github.com/dinesh-k-natarajan/advent-of-code/)
-[![](https://img.shields.io/github/languages/top/dinesh-k-natarajan/advent-of-code)](https://github.com/dinesh-k-natarajan/advent-of-code/)
-[![](https://img.shields.io/github/last-commit/dinesh-k-natarajan/advent-of-code)](https://github.com/dinesh-k-natarajan/advent-of-code/)
-[![](https://sloc.xyz/github/dinesh-k-natarajan/advent-of-code/?category=lines)](https://github.com/dinesh-k-natarajan/advent-of-code/)
+[![Languages Badge](https://img.shields.io/github/languages/count/dinesh-k-natarajan/advent-of-code)](https://github.com/dinesh-k-natarajan/advent-of-code/)
+[![Top Language Badge](https://img.shields.io/github/languages/top/dinesh-k-natarajan/advent-of-code)](https://github.com/dinesh-k-natarajan/advent-of-code/)
+[![Total Lines Badge](https://sloc.xyz/github/dinesh-k-natarajan/advent-of-code/?category=lines)](https://github.com/dinesh-k-natarajan/advent-of-code/)
 
 My solutions for the yearly coding challenge resembling an advent calendar
 

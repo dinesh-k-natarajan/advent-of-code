@@ -27,5 +27,5 @@ jobs:
         uses: swinton/screenshot-website@v1.x
         with:
           source: https://adventofcode.com/2020
-          destination: 2020/advent_calendar.png
+          destination: advent_calendar_2020.png
           full-page: true

@@ -1,4 +1,3 @@
-import pytest
 import re
 import math
 import numpy as np
@@ -114,7 +113,17 @@ def find_corners( tiles ):
             product *= tile_id
     return product
 
-# pseudo main() function
+"""
+Currently, using the code block below acts as a pesudo main() function.
+TODO: Using global variables with my usual code structure of a main() function 
+and if __name__ == '__main__' statement.
+
+Lesson learnt:
+--------------
+Beware of using memoized functions. Fatal bug was introduced when the cache
+dictionary was NOT reinitialized with a blank dict! The example and input had
+some common tile IDs which combined with the cache from example lead to the bug.
+"""
 orientations_cache = dict() 
 print('Test 1 Solution = ', find_corners( get_inputs( '20.example' ) ) )
 orientations_cache = dict() 

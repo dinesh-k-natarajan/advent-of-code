@@ -2,6 +2,15 @@
 
 Language used: Python
 
+<figure class="image">
+  <img src="calendar_2020.png" alt="2020 Advent Calendar">
+  <figcaption>
+    <center>
+      2020 Advent Calendar
+    </center>
+  </figcaption>
+</figure>
+
 ### Each daily folder contains:
  * example inputs for test cases
  * puzzle inputs

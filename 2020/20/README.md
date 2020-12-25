@@ -19,7 +19,7 @@ Test 1 Solution =  20899048083289
 Part 1 Solution =  29584525501199
 ```
 
-### [Part 2](https://github.com/dinesh-k-natarajan/advent-of-code/blob/main/2020/20/20-1.py)
+### [Part 2](https://github.com/dinesh-k-natarajan/advent-of-code/blob/main/2020/20/20-2.py)
 Using the shortcut in Part 1 without actually solving the jigsaw puzzle
 proved costly for Part 2. With the help of the AOC reddit thread, a jigsaw
 solver was reimplemented for solving Part 1.

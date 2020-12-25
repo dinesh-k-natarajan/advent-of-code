@@ -2,7 +2,8 @@
 
 Language used: Python
 
-![2020 Advent Calendar](calendar_2020.png)
+[image]: calendar_2020.png "2020 Advent Calendar"
+![2020 Advent Calendar][image]
 
 ### Each daily folder contains:
  * example inputs for test cases

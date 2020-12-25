@@ -18,14 +18,13 @@ def find_loop_size( public_key, subject=7 ):
     After the desired loop size, the subject number 7 is transformed into the 
     public key itself.
     """
-    loops = 1
+    loops = 0
     value = 1
-    while True:
+    while value != public_key:
+        loops += 1
         value *= subject
         value = value % 20201227
-        if value == public_key:
-            return loops
-        loops += 1
+    return loops
 
 def find_encryption( public_key, loops ):
     """

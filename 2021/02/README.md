@@ -1,4 +1,4 @@
-# My Solution for Day 1
+# My Solution for Day 2
 
 [Dive!](https://adventofcode.com/2021/day/2)
 ```bash

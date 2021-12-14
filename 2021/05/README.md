@@ -1,8 +1,8 @@
-# My Solution for Day 3
+# My Solution for Day 5
 
-[Binary Diagnostic](https://adventofcode.com/2021/day/3)
+[Hydrothermal Venture](https://adventofcode.com/2021/day/5)
 ```bash
-$ python 3.py
-Part 1 Solution =  1458194
-Part 2 Solution =  2829354
+$  python 5.py
+Part 1 Solution =  7438
+Part 2 Solution =  21406
 ```

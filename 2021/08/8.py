@@ -13,38 +13,36 @@ def count_1478( entries ):
     return count
 
 def decode_values( entry ):
-    lengths = { 2:'1', 3:'7', 4:'4', 5:{'2','3','5'}, 6:{'0','6','9'}, 7:'8' }  
     segments_1478 = [ 2, 4, 3, 7 ]
-    encoded_digits = [ digit for sublist in entry for digit in sublist ]
-    decoded_values = encoded_digits.copy()
+    lengths = { 2:'1', 3:'7', 4:'4', 5:{'2','3','5'}, 6:{'0','6','9'}, 7:'8' }  
+    signal_patterns, encoded_outputs = entry
+    decoded_values = signal_patterns.copy()
     legend = dict()
-    for i, encoded_digit in enumerate(encoded_digits):
-        if len(encoded_digit) in segments_1478:
-            decoded_values[i] = lengths[ len(encoded_digit) ]
-            legend[ decoded_values[i] ] = set( encoded_digit )
-        else:
-            decoded_values[i] = lengths[ len(encoded_digit) ]  
-    for i, encoded_digit in enumerate(encoded_digits):
+    decoded_outputs = []
+    for i, encoded_pattern in enumerate( signal_patterns ):
+        if len(encoded_pattern) in segments_1478:
+            decoded_values[i] = lengths[ len(encoded_pattern) ]
+            legend[ decoded_values[i] ] = set( encoded_pattern )
+        else: decoded_values[i] = lengths[ len(encoded_pattern) ]  
+    for i, encoded_pattern in enumerate( signal_patterns ):
         while not isinstance( decoded_values[i], str ):
             if decoded_values[i].issubset( lengths[5] ):
-                flag_3 = legend['7'].issubset( set(encoded_digit) )
-                flag_5 = len( set(encoded_digit).intersection( legend['4'] ) ) == 3
-                if flag_3:
-                    decoded_values[i] = '3'
-                elif not flag_3 and flag_5:
-                    decoded_values[i] = '5'
-                elif not flag_3 and not flag_5:
-                    decoded_values[i] = '2'
+                flag_3 = legend['7'].issubset( set(encoded_pattern) )
+                flag_5 = len( set(encoded_pattern).intersection( legend['4'] ) ) == 3
+                if flag_3: decoded_values[i] = '3'
+                elif not flag_3 and flag_5: decoded_values[i] = '5'
+                elif not flag_3 and not flag_5: decoded_values[i] = '2'
+                legend[ decoded_values[i] ] = set( encoded_pattern )
             elif decoded_values[i].issubset( lengths[6] ):
-                flag_9 = legend['4'].issubset( set(encoded_digit) )
-                flag_0 = legend['7'].issubset( set(encoded_digit) )
-                if flag_9:
-                    decoded_values[i] = '9'
-                elif not flag_9 and flag_0:
-                    decoded_values[i] = '0'
-                elif not flag_9 and not flag_0:
-                    decoded_values[i] = '6'
-    return int( ''.join(decoded_values[-4:]) )
+                flag_9 = legend['4'].issubset( set(encoded_pattern) )
+                flag_0 = legend['7'].issubset( set(encoded_pattern) )
+                if flag_9: decoded_values[i] = '9'
+                elif not flag_9 and flag_0: decoded_values[i] = '0'
+                elif not flag_9 and not flag_0: decoded_values[i] = '6'
+                legend[ decoded_values[i] ] = set( encoded_pattern )
+    for encoded_output in encoded_outputs:
+        decoded_outputs += [ key for key, value in legend.items() if set(encoded_output) == value ]
+    return int( ''.join(decoded_outputs) )
 
 def compute_sum( entries ):
     sum_outputs = 0

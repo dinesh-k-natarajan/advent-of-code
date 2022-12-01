@@ -12,6 +12,7 @@ Indulge yourselves at [adventofcode.com](https://adventofcode.com/about) created
  * 2019 - Python
  * 2020 - Python
  * 2021 - Python
+ * 2022 - Python
 
 ### Directory and File Structure
 ```bash

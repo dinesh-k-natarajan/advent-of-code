@@ -8,7 +8,7 @@ def count_max_calories( calories ):
     return max([sum(sublist) for sublist in calories])
 
 def count_top3_calories( calories ):
-    return sum(sorted([sum(sublist) for sublist in calories])[::-1][:3])
+    return sum(sorted([sum(sublist) for sublist in calories], reverse=True)[:3])
     
 @pytest.mark.parametrize( 'test_input,expected', [ ('1.example', 24000) ] )
 def test_part1( test_input, expected ):

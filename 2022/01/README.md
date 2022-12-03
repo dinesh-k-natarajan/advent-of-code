@@ -5,4 +5,5 @@
 $  python 1.py
 Part 1 Solution =  67658
 Part 2 Solution =  200158
+Execution took 0.00967 s
 ```

@@ -1,3 +1,4 @@
+import time
 import pytest
 
 def get_input( filename ):
@@ -19,8 +20,11 @@ def test_part2( test_input, expected ):
     assert count_top3_calories( get_input(test_input) ) == expected
 
 def main():
+    start_time = time.perf_counter()
     print('Part 1 Solution = ', count_max_calories( get_input('1.in') ))
     print('Part 2 Solution = ', count_top3_calories( get_input('1.in') ))
+    end_time = time.perf_counter()
+    print(f'Execution took {(end_time-start_time):.5f} s')
 
 if __name__ == '__main__':
     main()

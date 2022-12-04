@@ -2,8 +2,8 @@
 
 [Camp Cleanup](https://adventofcode.com/2022/day/4)
 ```bash
- $  python 4.py
+$  python 4.py
 Part 1 Solution =  477
-Part 1 Solution =  830
-Execution took 0.03008 s
+Part 2 Solution =  830
+Execution took 0.02938 s
 ```

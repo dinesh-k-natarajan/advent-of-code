@@ -1,10 +1,11 @@
 import time
 import pytest
 
+my_range = lambda a,b: range(int(a), int(b)+1) 
+
 def parse_input( filename ):
     with open(filename,'r') as input_file:
-        pairs = [[list(map(int,limits.split('-'))) for limits in pair.split(',')] for pair in input_file.read().splitlines()]
-        return [[list(range(limits[0], limits[1]+1)) for limits in pair] for pair in pairs]
+        return [[my_range(*limits.split('-')) for limits in pair.split(',')] for pair in input_file.read().splitlines()]
 
 def count_fully_contained_pairs( pairs ):
     return len([elves for elves in pairs if (set(elves[0]).issubset(elves[1]) or set(elves[1]).issubset(elves[0]))])

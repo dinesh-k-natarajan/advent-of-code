@@ -9,7 +9,8 @@ def parse_input( filename ):
         column_idx = [pos for pos,char in enumerate(part1.splitlines()[-1]) if char.isdigit()]
         # Extract the crates from the stack
         stacks = [[line[idx] for idx in column_idx]for line in part1.splitlines()[:-1]]
-        # Transpose the stacks, such that each column(stack) is a list
+        # Transpose the stacks, such that each column(stack) is a list of crates
+        # Reverse the order of crates in a stack, such that the bottom crate is the first element
         stacks = [[crate for crate in stack[::-1] if crate!=' '] for stack in list(map(list, zip(*stacks)))]
         # Extract the three integers per line of procedure
         procedure = [[int(item) for item in re.findall(r'[0-9]+', line)] for line in part2.splitlines()]
@@ -17,7 +18,7 @@ def parse_input( filename ):
 
 def find_top_crates_CM9000( stacks, procedure ):
     for num_crates, source, dest in procedure:
-        # Pop out the last num_crates from source stack
+        # Pop out the last num_crates from source stack in top-to-bottom order
         removed_crates = [stacks[source-1].pop() for _ in range(num_crates)]
         # Add crates one-by-one to destination stack
         stacks[dest-1].extend(removed_crates)
@@ -25,7 +26,7 @@ def find_top_crates_CM9000( stacks, procedure ):
 
 def find_top_crates_CM9001( stacks, procedure ):
     for num_crates, source, dest in procedure:
-        # Pop out the last num_crates from source stack
+        # Pop out the last num_crates from source stack in top-to-bottom order
         removed_crates = [stacks[source-1].pop() for _ in range(num_crates)]
         # Add multiple crates together to destination stack (order is reversed now)
         stacks[dest-1].extend(removed_crates[::-1])

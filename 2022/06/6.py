@@ -8,9 +8,8 @@ def parse_input( filename ):
 def find_marker( buffer, seq_len ):
     for idx in range(len(buffer)-seq_len+1):
         if len(set(buffer[idx:idx+seq_len])) == seq_len:
-            marker = idx+seq_len
-            break
-    return marker
+            return idx+seq_len
+    return None
 
 @pytest.mark.parametrize( 'test_input,expected', [  ('6.ex1', 7), 
                                                     ('6.ex2', 5),

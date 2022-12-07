@@ -44,7 +44,6 @@ def parse_input( filename ):
         groups = input_file.read().split('$ ')[1:]
         groups = [[item for item in group.split('\n') if item!=''] for group in groups]
         filesystem = Directory(name='/', parent_dir=None)
-        current_dir = filesystem
         for group in groups:
             # if cd command
             if len(group)==1 and group[0].startswith('cd'):

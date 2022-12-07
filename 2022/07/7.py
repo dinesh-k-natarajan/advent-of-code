@@ -54,24 +54,20 @@ def parse_input( filename ):
                 elif dest_dir == '/': # go to root directory
                     current_dir = filesystem
                 elif dest_dir not in ['..', '/']:
-                    # if dest_dir does not exist inside current_dir
-                    if dest_dir not in current_dir.get_contents():
-                        current_dir = Directory(name=dest_dir, parent_dir=current_dir)
-                    # if dest_dir already exists inside current_dir
-                    if dest_dir in current_dir.get_contents(): 
-                        idx = current_dir.get_contents().index(dest_dir)
-                        current_dir = current_dir.contents[idx]
+                    assert dest_dir in current_dir.get_contents()
+                    idx = current_dir.get_contents().index(dest_dir)
+                    current_dir = current_dir.contents[idx]
                 else: 
                     raise ValueError('Unknown directory used in cd command!')
             # if ls command
-            if len(group)>1 and group[0].startswith('ls'):
+            elif len(group)>1 and group[0].startswith('ls'):
                 contents = [line.split(' ') for line in group[1:]]
                 for idx, item in enumerate(contents):
                     ## if directory
                     if item[0]=='dir':
                         item_ = Directory(name=item[1], parent_dir=current_dir)
                     ## if file
-                    if item[0].isdigit():
+                    elif item[0].isdigit():
                         item_ = File(name=item[1], size=int(item[0]), parent_dir=current_dir)
                     ## Replace item in contents with the categorized item_
                     contents[idx] = item_

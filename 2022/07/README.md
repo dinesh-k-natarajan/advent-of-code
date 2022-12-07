@@ -5,5 +5,5 @@
 $  python 7.py
 Part 1 Solution =  1501149
 Part 2 Solution =  10096985
-Execution took 0.10242 s
+Execution took 0.05477 s
 ```

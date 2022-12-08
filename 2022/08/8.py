@@ -29,7 +29,7 @@ def count_unblocked( tree, view ):
     if all(t<tree for t in view): # if no trees are >= tree
         n_unblocked = len(view)
     else:
-        # from the tree, you can see upto the first tallest tree
+        # from the tree, you can see upto the first taller tree
         taller_trees = [view.index(t) for t in view if t>=tree]
         n_unblocked = taller_trees[0]+1 # start index from 1
     return n_unblocked

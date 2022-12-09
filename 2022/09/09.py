@@ -51,11 +51,11 @@ def count_visited_positions( actions, n_knots=2 ):
                     knots[i].append(T)
     return len(set(knots[n_knots-1]))
 
-@pytest.mark.parametrize( 'test_input,expected', [ ('09.example', 13) ] )
+@pytest.mark.parametrize( 'test_input,expected', [ ('09.example1', 13) ] )
 def test_part1( test_input, expected ):
     assert count_visited_positions( parse_input(test_input) ) == expected
 
-@pytest.mark.parametrize( 'test_input,expected', [ ('09.example', 1), ('09.example2', 36) ] )
+@pytest.mark.parametrize( 'test_input,expected', [ ('09.example1', 1), ('09.example2', 36) ] )
 def test_part2( test_input, expected ):
     assert count_visited_positions( parse_input(test_input), n_knots=10 ) == expected
 

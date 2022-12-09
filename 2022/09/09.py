@@ -8,18 +8,13 @@ def parse_input( filename ):
 
 # Directions of movement (x=horizontal, y=vertical)
 DIRECTION = {'U':(0,1),'D':(0,-1),'R':(1,0),'L':(-1,0)}
-# whether x,y coordinate is positive(True) or negative (False)
-QUADRANTS = {(True,True):'Q1',(False,True):'Q2',(False,False):'Q3',(True,False):'Q4'}
-# Diagonal to move into a specific quadrant
-DIAGONAL  = {'Q1':(1,1),'Q2':(-1,1),'Q3':(-1,-1),'Q4':(1,-1)}
+# Binarize function to map True -> 1, False -> -1
+binarize = lambda boolean: 1 if boolean else -1
 
 def check_separation( H, T ):
     # T should be in contact with H either adjacently or diagonally
-    if sum(item**2 for item in [h-t for h,t in zip(H,T)])<=2:
-        # |difference| in [(0,0), (0,1), (1,0), (1,1)] => in contact
-        return False
-    else:
-        return True
+    # ||difference||² <=2 -> in contact, >2 -> separated
+    return sum(item**2 for item in [h-t for h,t in zip(H,T)]) > 2
 
 def move_tail( H, T ):
     # Assumed that H,T are separated and T must be moved
@@ -28,20 +23,17 @@ def move_tail( H, T ):
     if diff[0]*diff[1] == 0:
         # since actions are applied step-by-step, max(diff) is usually 2
         # find unit vector from diff to move T in that direction 
-        move = tuple(item//2 for item in diff)
-        T = tuple(t+m for t,m in zip(T,move))
+        unit_vector = tuple(item//2 for item in diff)
     # if H,T aren't in the same row or column
     else:
-        # find which quadrant the diff lies in
-        quad = QUADRANTS[tuple(item>0 for item in diff)]
-        # move T diagonally to that quadrant
-        T = tuple(t+d for t,d in zip(T, DIAGONAL[quad]))
-    return T 
+        # move T by unit diagonal to the quadrant in which diff lies
+        # Unit diagonals = Q1:(1,1),Q2:(-1,1),Q3:(-1,-1),Q4:(1,-1)
+        unit_vector = tuple(binarize(item>0) for item in diff)
+    return tuple(t+u for t,u in zip(T,unit_vector))
 
 def count_visited_positions( actions, n_knots=2 ):
-    origin=(0,0)
     # all knots start at the origin
-    knots = {rope:[origin] for rope in range(n_knots)}
+    knots = {knot:[(0,0)] for knot in range(n_knots)}
     for action in actions:
         dir, dist = action
         # First knot is the Head

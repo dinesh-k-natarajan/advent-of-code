@@ -1,8 +1,9 @@
-DAY_with_pad=$(date +'%d')
-DAY_without_pad=$(date +'%e')
-scp -r template/ $DAY_with_pad 
-cd $DAY_with_pad
+DAY=$(date +'%d')
+scp -r template/ $DAY 
+cd $DAY
 for file in template.*
 do 
-    mv "$file" "${file/template./$DAY_without_pad.}"
+    mv "$file" "${file/template./$DAY.}"
 done
+sed -i "s/1.example/$DAY.example/" $DAY.py
+sed -i "s/1.in/$DAY.in/" $DAY.py

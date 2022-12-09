@@ -20,7 +20,7 @@ def move_tail( H, T ):
     # Assumed that H,T are separated and T must be moved
     diff = tuple(h-t for h,t in zip(H,T))
     # if H,T are in the same row or column
-    if diff[0]*diff[1] == 0:
+    if 0 in diff:
         # since actions are applied step-by-step, max(diff) is usually 2
         # find unit vector from diff to move T in that direction 
         unit_vector = tuple(item//2 for item in diff)

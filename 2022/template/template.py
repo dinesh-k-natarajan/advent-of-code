@@ -22,8 +22,8 @@ def test_part2( test_input, expected ):
 
 def main():
     start_time = time.perf_counter()
-    print('Part 1 Solution = ', compute_1( parse_input('1.in') ))
-    print('Part 2 Solution = ', compute_2( parse_input('1.in') ))
+    print('Part 1 Solution =', compute_1( parse_input('1.in') ))
+    print('Part 2 Solution =', compute_2( parse_input('1.in') ))
     end_time = time.perf_counter()
     print(f'Execution took {(end_time-start_time):.5f} s')
 

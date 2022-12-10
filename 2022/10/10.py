@@ -61,8 +61,8 @@ def test_part2( test_input, expected ):
 
 def main():
     start_time = time.perf_counter()
-    print('Part 1 Solution = ', compute_signal_strengths( parse_input('10.in') ))
-    print('Part 2 Solution =\n', decode_CRT( parse_input('10.in') ))
+    print('Part 1 Solution =',compute_signal_strengths( parse_input('10.in') ))
+    print('Part 2 Solution =\n{0}'.format( decode_CRT( parse_input('10.in') )))
     end_time = time.perf_counter()
     print(f'Execution took {(end_time-start_time):.5f} s')
 

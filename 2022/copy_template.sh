@@ -7,3 +7,4 @@ do
 done
 sed -i "s/1.example/$DAY.example/" $DAY.py
 sed -i "s/1.in/$DAY.in/" $DAY.py
+sed -i "s/1/$DAY/" README.md

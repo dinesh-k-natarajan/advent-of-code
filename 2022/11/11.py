@@ -25,29 +25,29 @@ def parse_input(filename):
 
 def compute_new_worry(worry, operation):
     # Example: operation = ['old', '*', '6'] => new = old * 6
-    if operation[0] == 'old':
-        new_worry = worry
     if operation[1] == '*':
         op = lambda operand1,operand2: operand1 * operand2
     elif operation[1] == '+':
         op = lambda operand1,operand2: operand1 + operand2
     if operation[2].isdigit():
-        new_worry = op(new_worry, int(operation[2]))
+        number = int(operation[2])
     elif operation[2] == 'old':
-        new_worry = op(new_worry, worry)
-    return new_worry
+        number = worry
+    return op(worry,number)
 
-def compute_monkey_business(monkeys, N_ROUNDS=20, part2=False):
+def compute_monkey_business(monkeys, n_rounds=20, part2=False):
     for monkey in monkeys:
         monkey['n_inspected'] = 0 # Keep track of how many items the monkeys inspect
     """
-    NOTE: 'Worry levels are no longer divided by three after each item is inspected; you'll need to find another way to keep your worry levels manageable.'
+    NOTE: 'Worry levels are no longer divided by three after each item is inspected; 
+    you'll need to find another way to keep your worry levels manageable.'
 
     Trick to speed-up part 2 from r/adventofcode comment by u/wojtek-graj
     Link: https://www.reddit.com/r/adventofcode/comments/zifqmh/comment/izr3h4t/
 
-    The item values keep increasing for longer rounds, thus modulus (%) is costly
-    Computing item % divider (expensive) is equivalent to computing (item % LCM(all dividers)) % divider (cheap), as shown below (comment by u/Fickle_Dragonfly4381)
+    The item values keep increasing for longer rounds, thus item % divider is costly.
+    Computing item % divider is equivalent to computing (item % LCM(all dividers)) % divider, 
+    as shown below (comment by u/Fickle_Dragonfly4381)
 
     91238 % 5 = 3
     91238 % 7 = 0
@@ -56,10 +56,10 @@ def compute_monkey_business(monkeys, N_ROUNDS=20, part2=False):
     28 % 5 = 3
     28 % 7 = 0   
 
-    Thus, for part 2, instead of worry level//3, I take worry level % LCM(dividers) 
+    Thus, for part 2, instead of worry level//3, I use worry level % LCM(dividers) 
     """
     LCM = math.lcm(*[monkey['divider'] for monkey in monkeys])
-    for _ in range(N_ROUNDS):
+    for _ in range(n_rounds):
         for monkey in monkeys:
             while len(monkey['contents']) > 0: # iterate until monkey has no items
                 monkey['n_inspected'] += 1
@@ -85,12 +85,12 @@ def test_part1(test_input,expected):
 
 @pytest.mark.parametrize('test_input,expected', [('11.example',2713310158)])
 def test_part2(test_input,expected):
-    assert compute_monkey_business(parse_input(test_input), N_ROUNDS=10000, part2=True) == expected
+    assert compute_monkey_business(parse_input(test_input), n_rounds=10000, part2=True) == expected
 
 def main():
     start_time = time.perf_counter()
     print(f"Part 1 Solution = {compute_monkey_business(parse_input('11.in'))}")
-    print(f"Part 2 Solution = {compute_monkey_business(parse_input('11.in'), N_ROUNDS=10000, part2=True)}")
+    print(f"Part 2 Solution = {compute_monkey_business(parse_input('11.in'), n_rounds=10000, part2=True)}")
     end_time = time.perf_counter()
     print(f'Execution took {(end_time-start_time):.5f} s')
 

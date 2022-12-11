@@ -1,6 +1,6 @@
-# My Solution for Day 1
+# My Solution for Day date
 
-[](https://adventofcode.com/2022/day/1)
+[](https://adventofcode.com/2022/day/date)
 ```bash
 
 ```

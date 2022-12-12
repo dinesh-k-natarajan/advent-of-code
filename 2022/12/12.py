@@ -49,15 +49,15 @@ def compute_shortest_path(heightmap, start, part2=False):
             x1, y1 = x0 + dx, y0 + dy
             # check if (x1,y1) is within the grid
             if x1 in range(0,len(heightmap)) and y1 in range(0,len(heightmap[0])): 
-                # check if (x1,y1) is unvisited (to ensure shortest path, no revisits)
-                if cost[(x1,y1)] == math.inf: 
+                # check if (x1,y1) is unvisited (to avoid going back)
+                if (x1,y1) not in visited:
                     # checking movement rule: elevation change should be atmost 1
                     if elevation[x1][y1] - elevation[x0][y0] <= 1:
                         # (x1,y1) was visited. Update its shortest path from start 
                         cost[(x1,y1)] = cost[(x0,y0)] + 1
                         visited.add((x1,y1))
                         queue.append((x1,y1))
-    # print(f'Visited {len(visited)} out of {len(heightmap)*len(heightmap[0])} nodes')
+    # print(f'Visited {len(visited)} out of {len(heightmap)*len(heightmap[0])} grid points')
     return cost
 
 def compute_1(heightmap):

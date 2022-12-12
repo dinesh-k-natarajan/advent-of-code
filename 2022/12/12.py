@@ -23,6 +23,7 @@ def locate_char(heightmap, char):
     return locations
 
 def compute_shortest_path(heightmap, start, part2=False):
+    # finds shortest path to all points in a heightmap from start
     if not part2:
         # elevation is a 2D grid with elevation('a')=0,..., elevation('z')=25
         elevation = [[ord(entry)-ord('a') for entry in row] for row in heightmap]
@@ -61,7 +62,7 @@ def compute_1(heightmap):
     # Equivalent elevation: 'S' => 'a', 'E' => 'z'
     heightmap[start[0]][start[1]] = 'a'
     heightmap[end[0]][end[1]]     = 'z'
-    # find shortest path from 'S' to all points in heightmap
+    # find shortest path from 'S' to all points in heightmap, then find # steps to 'E'
     steps = compute_shortest_path(heightmap, start)
     return steps[end[0]][end[1]]
 
@@ -73,12 +74,12 @@ def compute_2(heightmap):
     # Equivalent elevation: 'S' => 'a', 'E' => 'z'
     heightmap[location_S[0]][location_S[1]] = 'a'
     heightmap[end[0]][end[1]] = 'z'
-    # find the shortest path from 'E' to all points in heightmap, then find the nearest 'a' from 'E'
-    steps = compute_shortest_path(heightmap, end, part2=True)
+    # find the shortest path from 'E' to all points in heightmap, then find # steps to nearest 'a' from 'E'
+    steps = compute_shortest_path(heightmap, start=end, part2=True)
     # Thus, the algorithm is executed once starting from 'E', instead of multiple times starting from all 'a's
     # Improved speed from 2.02590 s to 0.02400 s => 84x speedup
     # credits: https://www.reddit.com/r/adventofcode/comments/zjovug/2022_day_12_part_2_big_o_whats_that/
-    return min([steps[end[0]][end[1]] for end in locations_a])
+    return min([steps[start[0]][start[1]] for start in locations_a])
 
 @pytest.mark.parametrize('test_input,expected', [('12.example',31)])
 def test_part1(test_input,expected):

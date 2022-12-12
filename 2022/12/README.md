@@ -5,5 +5,5 @@
 $  python 12.py
 Part 1 Solution = 394
 Part 2 Solution = 388
-Execution took 0.02400 s
+Execution took 0.02325 s
 ```

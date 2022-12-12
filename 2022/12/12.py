@@ -19,7 +19,7 @@ def locate_char(heightmap, char):
     for n_row, row in enumerate(heightmap):
         for n_col, entry in enumerate(row):
             if entry == char: 
-                 locations.append([n_row, n_col])
+                 locations.append((n_row, n_col))
     return locations
 
 def compute_shortest_path(heightmap, start, part2=False):
@@ -30,30 +30,35 @@ def compute_shortest_path(heightmap, start, part2=False):
     elif part2:
         # for efficiently solving part2, start from 'E'. Hence invert the elevation to keep the movement rule unchanged
         elevation = [[ord('z')-ord(entry) for entry in row] for row in heightmap] 
-    # Steps is a 2D grid of shortest path between each point and the start
+    # cost is a dict mapping (x,y) to cost to reach (x,y) from start along shortest path
     # initialized with value = infinity implying unvisited spots
-    steps = [[math.inf for _ in range(len(heightmap[0]))] for _ in range(len(heightmap))] 
-    # Visited is a list of visited points based on the rules
-    visited = []
-    # Update starting point
-    steps[start[0]][start[1]] = 0
-    visited.append(start)
-    while visited:
-        x0, y0 = visited.pop(0)
+    cost = {(r,c):math.inf for r in range(len(heightmap)) for c in range(len(heightmap[0]))}
+    # Visited is a history of points visited by the algorithm
+    visited = set()
+    # Queue is a list of points to be visited next by the algorithm
+    queue = []
+    # Update info about starting point
+    cost[start] = 0
+    visited.add(start)
+    queue.append(start)
+    # Iterate until queue is empty
+    while queue: 
+        x0, y0 = queue.pop(0)
         # from each point (x0,y0), find potential point(s) to visit based on rules
         for dx, dy in DIRECTIONS.values():
             x1, y1 = x0 + dx, y0 + dy
             # check if (x1,y1) is within the grid
             if x1 in range(0,len(heightmap)) and y1 in range(0,len(heightmap[0])): 
                 # check if (x1,y1) is unvisited (to ensure shortest path, no revisits)
-                if steps[x1][y1] == math.inf: 
+                if cost[(x1,y1)] == math.inf: 
                     # checking movement rule: elevation change should be atmost 1
                     if elevation[x1][y1] - elevation[x0][y0] <= 1:
                         # (x1,y1) was visited. Update its shortest path from start 
-                        steps[x1][y1] = steps[x0][y0] + 1
-                        # Add (x1,y1) to the list of visited points
-                        visited.append([x1,y1])
-    return steps
+                        cost[(x1,y1)] = cost[(x0,y0)] + 1
+                        visited.add((x1,y1))
+                        queue.append((x1,y1))
+    # print(f'Visited {len(visited)} out of {len(heightmap)*len(heightmap[0])} nodes')
+    return cost
 
 def compute_1(heightmap):
     # In part 1, start is 'S' and end is 'E'
@@ -64,7 +69,7 @@ def compute_1(heightmap):
     heightmap[end[0]][end[1]]     = 'z'
     # find shortest path from 'S' to all points in heightmap, then find # steps to 'E'
     steps = compute_shortest_path(heightmap, start)
-    return steps[end[0]][end[1]]
+    return steps[end]
 
 def compute_2(heightmap):
     # In part 2, the starting points are all 'a's in the heightmap
@@ -79,7 +84,7 @@ def compute_2(heightmap):
     # Thus, the algorithm is executed once starting from 'E', instead of multiple times starting from all 'a's
     # Improved speed from 2.02590 s to 0.02400 s => 84x speedup
     # credits: https://www.reddit.com/r/adventofcode/comments/zjovug/2022_day_12_part_2_big_o_whats_that/
-    return min([steps[start[0]][start[1]] for start in locations_a])
+    return min([steps[start] for start in locations_a])
 
 @pytest.mark.parametrize('test_input,expected', [('12.example',31)])
 def test_part1(test_input,expected):

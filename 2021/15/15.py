@@ -9,7 +9,12 @@ def parse_input(filename):
 # Movements in a 2D grid represented by a list of lists
 DIRECTIONS = {'U':[-1,0], 'D':[1,0], 'L':[0,-1], 'R':[0,1]}
 
+def heuristic(a, b):
+    # Manhattan distance used as heuristic in A* algorithm
+    return abs(a[0]-b[0]) + abs(a[1]-b[1])
+
 def compute_shortest_path(risks):
+    # Dijkstra algorithm to find cheapest path from start to end
     start = (0,0)
     end = (len(risks)-1, len(risks[0])-1)
     costs = {(r,c):math.inf for r in range(end[0]+1) for c in range(end[1]+1)}
@@ -23,11 +28,11 @@ def compute_shortest_path(risks):
             x1, y1 = x0 + dx, y0 + dy
             if x1 in range(end[0]+1) and y1 in range(end[1]+1):
                 new_cost = costs[(x0,y0)] + risks[x1][y1]
-                if new_cost < costs[(x1,y1)]:
-                    costs[(x1,y1)] = new_cost
+                if (x1,y1) not in visited or new_cost < costs[(x1,y1)]:
+                    costs[(x1,y1)] = new_cost #+ heuristic((x1,y1), end)
                     queue.append((x1,y1))
                     visited.add((x1,y1))
-    print(f'Visited {len(set(visited))} out of {len(risks)*len(risks[0])} grid points')
+    # print(f'Visited {len(set(visited))} out of {len(risks)*len(risks[0])} grid points')
     return costs[end]
 
 def expand_tiles(risks):

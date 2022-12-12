@@ -8,6 +8,8 @@ def parse_input(filename):
 
 # Movement in 2D grid represented by a list of lists with origin at top-left
 DIRECTIONS = {'U':[-1,0], 'D':[1,0], 'L':[0,-1], 'R':[0,1]}
+# Binarize a boolean to -1 or 1
+binarize = lambda bool: 1 if bool else -1
 
 def print_grid(grid):
     # for printing and debugging the grid of values
@@ -22,9 +24,13 @@ def locate_char(heightmap, char):
                  locations.append([n_row, n_col])
     return locations
 
-def compute_shortest_path(heightmap, start, end):
-    # elevation is a 2D grid with elevation('a')=1,..., elevation('z')=26
-    elevation = [[ord(entry)-ord('a')+1 for entry in row] for row in heightmap]
+def compute_shortest_path(heightmap, start, part2=False):
+    if not part2:
+        # elevation is a 2D grid with elevation('a')=0,..., elevation('z')=25
+        elevation = [[ord(entry)-ord('a') for entry in row] for row in heightmap]
+    elif part2:
+        # for efficiently solving part2, start from 'E'. Hence invert the elevation to keep the movement rule unchanged
+        elevation = [[ord('z')-ord(entry) for entry in row] for row in heightmap] 
     # Steps is a 2D grid of shortest path between each point and the start
     # initialized with value = infinity implying unvisited spots
     steps = [[math.inf for _ in range(len(heightmap[0]))] for _ in range(len(heightmap))] 
@@ -48,7 +54,7 @@ def compute_shortest_path(heightmap, start, end):
                         steps[x1][y1] = steps[x0][y0] + 1
                         # Add (x1,y1) to the list of visited points
                         visited.append([x1,y1])
-    return steps[end[0]][end[1]]
+    return steps
 
 def compute_1(heightmap):
     # In part 1, start is 'S' and end is 'E'
@@ -57,8 +63,9 @@ def compute_1(heightmap):
     # Equivalent elevation: 'S' => 'a', 'E' => 'z'
     heightmap[start[0]][start[1]] = 'a'
     heightmap[end[0]][end[1]]     = 'z'
-    # find shortest path from 'S' to 'E'
-    return compute_shortest_path(heightmap, start, end)
+    # find shortest path from 'S' to all points in heightmap
+    steps = compute_shortest_path(heightmap, start)
+    return steps[end[0]][end[1]]
 
 def compute_2(heightmap):
     # In part 2, the starting points are all 'a's in the heightmap
@@ -68,8 +75,13 @@ def compute_2(heightmap):
     # Equivalent elevation: 'S' => 'a', 'E' => 'z'
     heightmap[location_S[0]][location_S[1]] = 'a'
     heightmap[end[0]][end[1]] = 'z'
-    # find the shortest path from any 'a' in the heightmap to 'E'
-    return min([compute_shortest_path(heightmap, start, end) for start in locations_a])
+    # find the shortest path from 'E' to all points in heightmap
+    steps = compute_shortest_path(heightmap, end, part2=True)
+    # then find the nearest 'a' from 'E'
+    # Thus, the algorithm is executed once starting from 'E', instead of multiple times starting from all 'a's
+    # Improved speed from 2.02590 s to 0.02400 s => 84x speedup
+    # credits: https://www.reddit.com/r/adventofcode/comments/zjovug/2022_day_12_part_2_big_o_whats_that/
+    return min([steps[end[0]][end[1]] for end in locations_a])
 
 @pytest.mark.parametrize('test_input,expected', [('12.example',31)])
 def test_part1(test_input,expected):

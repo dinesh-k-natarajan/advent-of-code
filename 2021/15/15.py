@@ -27,7 +27,7 @@ def compute_shortest_path(risks):
                     costs[(x1,y1)] = new_cost
                     queue.append((x1,y1))
                     visited.add((x1,y1))
-    print(len(risks)*len(risks[0]), len(set(visited)))
+    print(f'Visited {len(set(visited))} out of {len(risks)*len(risks[0])} grid points')
     return costs[end]
 
 def expand_tiles(risks):

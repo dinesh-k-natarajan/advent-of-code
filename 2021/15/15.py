@@ -15,6 +15,8 @@ def compute_shortest_path(risks):
     costs = {(r,c):math.inf for r in range(end[0]+1) for c in range(end[1]+1)}
     costs[start] = 0
     queue = [start]
+    visited = set()
+    visited.add(start)
     while queue:
         x0, y0 = queue.pop(0)
         for dx, dy in DIRECTIONS.values():
@@ -24,6 +26,8 @@ def compute_shortest_path(risks):
                 if new_cost < costs[(x1,y1)]:
                     costs[(x1,y1)] = new_cost
                     queue.append((x1,y1))
+                    visited.add((x1,y1))
+    print(len(risks)*len(risks[0]), len(set(visited)))
     return costs[end]
 
 def expand_tiles(risks):

@@ -8,8 +8,6 @@ def parse_input(filename):
 
 # Movement in 2D grid represented by a list of lists with origin at top-left
 DIRECTIONS = {'U':[-1,0], 'D':[1,0], 'L':[0,-1], 'R':[0,1]}
-# Binarize a boolean to -1 or 1
-binarize = lambda bool: 1 if bool else -1
 
 def print_grid(grid):
     # for printing and debugging the grid of values
@@ -75,9 +73,8 @@ def compute_2(heightmap):
     # Equivalent elevation: 'S' => 'a', 'E' => 'z'
     heightmap[location_S[0]][location_S[1]] = 'a'
     heightmap[end[0]][end[1]] = 'z'
-    # find the shortest path from 'E' to all points in heightmap
+    # find the shortest path from 'E' to all points in heightmap, then find the nearest 'a' from 'E'
     steps = compute_shortest_path(heightmap, end, part2=True)
-    # then find the nearest 'a' from 'E'
     # Thus, the algorithm is executed once starting from 'E', instead of multiple times starting from all 'a's
     # Improved speed from 2.02590 s to 0.02400 s => 84x speedup
     # credits: https://www.reddit.com/r/adventofcode/comments/zjovug/2022_day_12_part_2_big_o_whats_that/

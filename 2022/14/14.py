@@ -28,7 +28,6 @@ def diff_range(start, end):
     sign_y = get_sign(dy)
     return range(0, dx+sign_x, sign_x), range(0, dy+sign_y, sign_y)
 
-
 """
 Subclassing of collections.defaultdict to allow default values based on the key
 Usage: d = DefaultDict(lambda key: key + 5)
@@ -98,6 +97,8 @@ def find_equilibrium(cave, part2=False):
     to rest at the SAND_SOURCE. 
     
     NOTE: Print statements are the documentation. 
+    NOTE: n_sand starts from 0. In the puzzle, numbering starts from 1. Since the while loop
+    terminates only after considering the violating sand, n_sand denotes the first violating sand.
     """
     bounds = find_bounds(cave)
     n_sand = 0
@@ -110,7 +111,12 @@ def find_equilibrium(cave, part2=False):
             # print(f'Current position: {current_pos}')
             if not part2: 
                 if in_equilibrium := not in_bounds(current_pos, bounds):
-                    # print(f'Sand #{n_sand} went out of bounds at {current_pos}')
+                    # print(20*'▂')
+                    # print(f'Sand #{n_sand} went out of bounds at {current_pos}. Equilibrium reached!')
+                    # print(20*'▂')
+                    """ NOTE: the inner while loop is terminated by break. 
+                    The outer while loop will be terminated based on in_equilibrium.
+                    """
                     break
             next_pos = tuple(i+j for i,j in zip(current_pos, MOVEMENTS['D']))
             # print(f'\tChecking coordinate {next_pos}')
@@ -122,7 +128,7 @@ def find_equilibrium(cave, part2=False):
                 # print(f'\t\t{next_pos} is blocked by {cave[next_pos]}. Moving DL.')
                 new_pos = tuple(i+j for i,j in zip(current_pos, MOVEMENTS['DL']))
                 if cave[new_pos] not in ['#', 'o']:
-                    # print(f'\t\t{new_pos} is not blocked by {cave[new_pos]}. Updating current_pos as {new_pos}.')
+                    # print(f'\t\t{new_pos} is not blocked by "{cave[new_pos]}". Updating current_pos as {new_pos}.')
                     # Before continuing to next while iteration, update current_pos
                     current_pos = new_pos
                     continue
@@ -130,7 +136,7 @@ def find_equilibrium(cave, part2=False):
                     # print(f'\t\t{new_pos} is blocked by {cave[new_pos]}! Moving DR.')
                     new_pos = tuple(i+j for i,j in zip(current_pos, MOVEMENTS['DR']))
                     if cave[new_pos] not in ['#', 'o']:
-                        # print(f'\t\t{new_pos} is not blocked by {cave[new_pos]}. Updating current_pos as {new_pos}.')
+                        # print(f'\t\t{new_pos} is not blocked by "{cave[new_pos]}". Updating current_pos as {new_pos}.')
                         # Before continuing to next while iteration, update current_pos
                         current_pos = new_pos
                         continue
@@ -141,8 +147,15 @@ def find_equilibrium(cave, part2=False):
                         cave[current_pos] = sand_state
                         n_sand += 1
                         if part2: 
-                            if in_equilibrium := current_pos == SAND_SOURCE:
-                                break
+                            in_equilibrium = current_pos == SAND_SOURCE
+                            """ NOTE: the inner while loop is terminated by sand_state being set to 'o'. The outer
+                            while loop will be terminated based on in_equilibrium.
+                            """
+                            if in_equilibrium:
+                                # print(20*'▂')
+                                # print(f'Uh-oh! The resting spot of sand #{n_sand} was the SAND_SOURCE. Equilibrium reached!')
+                                # print(20*'▂')
+                                pass
     return n_sand
 
 def compute_1(rock_paths):

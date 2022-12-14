@@ -13,13 +13,15 @@ def parse_input(filename):
 get_sign = lambda num: 1 if num>=0 else -1
 
 def diff_range(start, end):
-    """ Given two points, this function: 
+    """ 
+    Given two points, this function: 
         (1) finds difference between the two points in x,y coordinates
         (2) finds signs of the differences
         (3) returns the ranges of the difference in x,y coordinates
     Examples: 
     if dx,dy = (0,-3): returns range(0,-4,-1) = [0,-1,-2,-3]
-    if dx,dy = (0, 3): returns range(0, 4, 1) = [0, 1, 2, 3] """
+    if dx,dy = (0, 3): returns range(0, 4, 1) = [0, 1, 2, 3] 
+    """
     dx = end[0] - start[0]
     dy = end[1] - start[1]
     sign_x = get_sign(dx)
@@ -27,9 +29,11 @@ def diff_range(start, end):
     return range(0, dx+sign_x, sign_x), range(0, dy+sign_y, sign_y)
 
 
-""" Subclassing of collections.defaultdict to allow default values based on the key
+"""
+Subclassing of collections.defaultdict to allow default values based on the key
 Usage: d = DefaultDict(lambda key: key + 5)
-Reference: https://stackoverflow.com/a/65902222 """
+Reference: https://stackoverflow.com/a/65902222 
+"""
 class DefaultDict(defaultdict):
     def __missing__(self, key):
         return self.default_factory(key)
@@ -38,7 +42,8 @@ class DefaultDict(defaultdict):
 SAND_SOURCE = (500,0)
 
 def draw_cave(rock_paths, part2=False):
-    """ Cave is a 2D grid: origin (0,0) is top-left, x: right, y: down.
+    """ 
+    Cave is a 2D grid: origin (0,0) is top-left, x: right, y: down.
     Cave is represented as a dict of coordinates and their associated material types. 
        
     Material types: 
@@ -49,7 +54,8 @@ def draw_cave(rock_paths, part2=False):
 
     For part 2: 
     if y_max is the highest y coordinate of the cave, there is a floor at y = y_max + 2.
-    It stretches in x-direction from -∞ to +∞.  """
+    It stretches in x-direction from -∞ to +∞.
+    """
     if part2:
         floor = 2 + max(coords[1] for path in rock_paths for coords in path)
         cave = DefaultDict(lambda key: '#' if key[1]==floor else '.')
@@ -77,7 +83,8 @@ def in_bounds(coords, bounds):
 MOVEMENTS = {'D':(0,1), 'DL':(-1,1), 'DR':(1,1)}
 
 def find_equilibrium(cave, part2=False):
-    """ This function simulates the sand filling and returns the units of sand required 
+    """ 
+    This function simulates the sand filling and returns the units of sand required 
     before equilibrium is reached. Equilibrium implies that sand flows out of bounds 
     of the cave into the abyss.
 
@@ -90,18 +97,19 @@ def find_equilibrium(cave, part2=False):
     For part 2: The equilibrium condition is different. Stop if a unit of sand comes 
     to rest at the SAND_SOURCE. 
     
-    NOTE: Print statements are the documentation. """
+    NOTE: Print statements are the documentation. 
+    """
     bounds = find_bounds(cave)
     n_sand = 0
-    if_equilibrium = False
-    while not if_equilibrium:
+    in_equilibrium = False
+    while not in_equilibrium:
         current_pos = SAND_SOURCE
-        sand_state = '*'
+        sand_state = None
         # print(f'Dropping sand #{n_sand}')
-        while sand_state != 'o':
+        while sand_state is None:
             # print(f'Current position: {current_pos}')
             if not part2: 
-                if if_equilibrium:= not in_bounds(current_pos, bounds):
+                if in_equilibrium := not in_bounds(current_pos, bounds):
                     # print(f'Sand #{n_sand} went out of bounds at {current_pos}')
                     break
             next_pos = tuple(i+j for i,j in zip(current_pos, MOVEMENTS['D']))
@@ -133,7 +141,7 @@ def find_equilibrium(cave, part2=False):
                         cave[current_pos] = sand_state
                         n_sand += 1
                         if part2: 
-                            if if_equilibrium := current_pos == SAND_SOURCE:
+                            if in_equilibrium := current_pos == SAND_SOURCE:
                                 break
     return n_sand
 

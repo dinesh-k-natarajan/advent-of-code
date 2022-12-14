@@ -81,7 +81,7 @@ def in_bounds(coords, bounds):
 # Movement dictionary
 MOVEMENTS = {'D':(0,1), 'DL':(-1,1), 'DR':(1,1)}
 
-def find_equilibrium(cave, part2=False):
+def simulate_sand(cave, part2=False):
     """ 
     This function simulates the sand filling and returns the units of sand required 
     before equilibrium is reached. Equilibrium implies that sand flows out of bounds 
@@ -96,7 +96,6 @@ def find_equilibrium(cave, part2=False):
     For part 2: The equilibrium condition is different. Stop if a unit of sand comes 
     to rest at the SAND_SOURCE. 
     
-    NOTE: Print statements are the documentation. 
     NOTE: n_sand starts from 0. In the puzzle, numbering starts from 1. Since the while loop
     terminates only after considering the violating sand, n_sand denotes the first violating sand.
     """
@@ -105,7 +104,7 @@ def find_equilibrium(cave, part2=False):
     in_equilibrium = False
     while not in_equilibrium:
         current_pos = SAND_SOURCE
-        sand_state = None
+        sand_state  = None
         # print(f'Dropping sand #{n_sand}')
         while sand_state is None:
             # print(f'Current position: {current_pos}')
@@ -121,28 +120,28 @@ def find_equilibrium(cave, part2=False):
             next_pos = tuple(i+j for i,j in zip(current_pos, MOVEMENTS['D']))
             # print(f'\tChecking coordinate {next_pos}')
             if cave[next_pos] == '.':
-                # print(f'\t\tCoordinate {next_pos} is free. Moving down...')
+                # print(f'\t\tCoordinate {next_pos} is free. Moving sand down to {next_pos}...')
                 current_pos = next_pos
                 continue
             elif cave[next_pos] in ['#', 'o']:
-                # print(f'\t\t{next_pos} is blocked by {cave[next_pos]}. Moving DL.')
-                new_pos = tuple(i+j for i,j in zip(current_pos, MOVEMENTS['DL']))
-                if cave[new_pos] not in ['#', 'o']:
-                    # print(f'\t\t{new_pos} is not blocked by "{cave[new_pos]}". Updating current_pos as {new_pos}.')
+                # print(f'\t\t{next_pos} is blocked by {cave[next_pos]}. Moving down and to left.')
+                next_pos = tuple(i+j for i,j in zip(current_pos, MOVEMENTS['DL']))
+                if cave[next_pos] == '.':
+                    # print(f'\t\t{next_pos} is not blocked by "{cave[next_pos]}". Updating current_pos as {next_pos}.')
                     # Before continuing to next while iteration, update current_pos
-                    current_pos = new_pos
+                    current_pos = next_pos
                     continue
                 else:
-                    # print(f'\t\t{new_pos} is blocked by {cave[new_pos]}! Moving DR.')
-                    new_pos = tuple(i+j for i,j in zip(current_pos, MOVEMENTS['DR']))
-                    if cave[new_pos] not in ['#', 'o']:
-                        # print(f'\t\t{new_pos} is not blocked by "{cave[new_pos]}". Updating current_pos as {new_pos}.')
+                    # print(f'\t\t{next_pos} is blocked by {cave[next_pos]}! Moving down and to right.')
+                    next_pos = tuple(i+j for i,j in zip(current_pos, MOVEMENTS['DR']))
+                    if cave[next_pos] == '.':
+                        # print(f'\t\t{next_pos} is not blocked by "{cave[next_pos]}". Updating current_pos as {next_pos}.')
                         # Before continuing to next while iteration, update current_pos
-                        current_pos = new_pos
+                        current_pos = next_pos
                         continue
                     else: 
                         # print(f'\tAll options exhausted. Sand #{n_sand} comes to rest at {current_pos}')
-                        # print(50*'o')
+                        # print(20*'⚪')
                         sand_state = 'o'
                         cave[current_pos] = sand_state
                         n_sand += 1
@@ -160,11 +159,11 @@ def find_equilibrium(cave, part2=False):
 
 def compute_1(rock_paths):
     cave = draw_cave(rock_paths)
-    return find_equilibrium(cave)
+    return simulate_sand(cave)
 
 def compute_2(rock_paths):
     cave = draw_cave(rock_paths, part2=True)
-    return find_equilibrium(cave, part2=True)
+    return simulate_sand(cave, part2=True)
 
 @pytest.mark.parametrize('test_input,expected', [('14.example',24)])
 def test_part1(test_input,expected):

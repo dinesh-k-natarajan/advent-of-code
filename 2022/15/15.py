@@ -51,38 +51,35 @@ def solve_1(pairs, y:int=None):
     return sum(interval[1]-interval[0] for interval in not_beacon_intervals)
 
 def solve_2(pairs, atmost:int=None):
-    found_ans = False
-    while not found_ans:
-        for y in range(0, atmost+1):
-            potential_beacons = []
-            # get intervals where beacons are not possible
-            not_beacon_intervals = get_intervals_at_y(pairs, y)
-            # if only one interval is found, check for potential beacons
-            if len(not_beacon_intervals) == 1:
-                interval = not_beacon_intervals.pop()
-                flag_left  = (0 <= interval[0])
-                flag_right = (interval[1] <= atmost)
-                if not flag_left and not flag_right:
-                    # interval covers [0,atmost] fully => no beacon at this y
-                    pass
-                elif flag_left and not flag_right:
-                    potential_beacons += [(x,y) for x in range(0, interval[0])]
-                elif not flag_left and flag_right: 
-                    potential_beacons += [(x,y) for x in range(interval[1]+1, atmost+1)]
-                elif flag_left and flag_right:
-                    potential_beacons += [(x,y) for x in range(0, interval[0])]
-                    potential_beacons += [(x,y) for x in range(interval[1]+1, atmost+1)]
-            # if more than one interval is found, check for potential beacons
-            else:
-                # search for each pair of intervals
-                for interval1, interval2 in zip(not_beacon_intervals, not_beacon_intervals[1:]):
-                    # print('\tConsidering two intervals: ', interval1, interval2)
-                    potential_beacons += [(x,y) for x in range(interval1[1]+1,interval2[0])]
-            # Terminating condition: there is only one distress beacon in the puzzle
-            if len(potential_beacons) > 0:
-                assert len(potential_beacons) == 1
-                found_ans = True
-                break # terminates the for loop
+    for y in range(0, atmost+1):
+        potential_beacons = []
+        # get intervals where beacons are not possible
+        not_beacon_intervals = get_intervals_at_y(pairs, y)
+        # if only one interval is found, check for potential beacons
+        if len(not_beacon_intervals) == 1:
+            interval = not_beacon_intervals.pop()
+            flag_left  = (0 <= interval[0])
+            flag_right = (interval[1] <= atmost)
+            if not flag_left and not flag_right:
+                # interval covers [0,atmost] fully => no beacon at this y
+                continue # skips everything below to next for loop iteration
+            elif flag_left and not flag_right:
+                potential_beacons += [(x,y) for x in range(0, interval[0])]
+            elif not flag_left and flag_right: 
+                potential_beacons += [(x,y) for x in range(interval[1]+1, atmost+1)]
+            elif flag_left and flag_right:
+                potential_beacons += [(x,y) for x in range(0, interval[0])]
+                potential_beacons += [(x,y) for x in range(interval[1]+1, atmost+1)]
+        # if more than one interval is found, check for potential beacons
+        else:
+            # search for each pair of intervals
+            for interval1, interval2 in zip(not_beacon_intervals, not_beacon_intervals[1:]):
+                # print('\tConsidering two intervals: ', interval1, interval2)
+                potential_beacons += [(x,y) for x in range(interval1[1]+1,interval2[0])]
+        # Terminating condition: there is only one distress beacon in the puzzle
+        if len(potential_beacons) > 0:
+            assert len(potential_beacons) == 1
+            break
     # Return the tuning frequency of distress beacon
     distress_beacon = potential_beacons.pop()
     print(f'Found distress beacon at coordinates: {distress_beacon}')
